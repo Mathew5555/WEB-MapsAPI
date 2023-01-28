@@ -35,9 +35,9 @@ class Map(QMainWindow):
 
     def keyPressEvent(self, event):
         key = event.key()
-        if key == Qt.Key_Up and self.map_zoom < 18:
+        if key == Qt.Key_PageUp and self.map_zoom < 18:
             self.map_zoom += 1
-        elif key == Qt.Key_Down and self.map_zoom > 0:
+        elif key == Qt.Key_PageDown and self.map_zoom > 0:
             self.map_zoom -= 1
         self.refresh_map()
 
