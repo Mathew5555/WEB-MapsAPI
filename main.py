@@ -1,8 +1,6 @@
 import sys
 from io import BytesIO
-
 import requests
-
 from PyQt5.QtGui import QPixmap, QImage, QKeyEvent
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow
 from PyQt5 import uic
@@ -21,6 +19,7 @@ class Map(QMainWindow):
         self.map_zoom = 5
         self.map_ll = [37.9777751, 55.757718]
         self.map_l = "map"
+        self.delta = 0.001
         self.refresh_map()
 
     def refresh_map(self):
@@ -39,6 +38,14 @@ class Map(QMainWindow):
             self.map_zoom += 1
         elif key == Qt.Key_PageDown and self.map_zoom > 0:
             self.map_zoom -= 1
+        elif key == Qt.Key_Left and self.map_ll[0] > -180:
+            self.map_ll[0] -= (self.delta * (18 - self.map_zoom) ** 2)
+        elif key == Qt.Key_Right and self.map_ll[0] < 180:
+            self.map_ll[0] += (self.delta * (18 - self.map_zoom) ** 2)
+        elif key == Qt.Key_Up and self.map_ll[0] < 90:
+            self.map_ll[1] += (self.delta * (18 - self.map_zoom) ** 2)
+        elif key == Qt.Key_Down and self.map_ll[0] > -90:
+            self.map_ll[1] -= (self.delta * (18 - self.map_zoom) ** 2)
         self.refresh_map()
 
     def initUI(self):
