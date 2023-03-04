@@ -1,6 +1,7 @@
 import sys
 from io import BytesIO
 import requests
+from PyQt5 import QtCore
 from PyQt5.QtGui import QPixmap, QImage, QKeyEvent
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow
 from PyQt5 import uic
@@ -48,12 +49,40 @@ class Map(QMainWindow):
             self.map_ll[1] -= (self.delta * (18 - self.map_zoom) ** 2)
         self.refresh_map()
 
+    def change_map(self):
+        self.pushButton.setStyleSheet("#pushButton" + self.style_button[0] + "#pushButton" + self.style_button[1])
+        self.pushButton_1.setStyleSheet("#pushButton_1" + self.style_button[0] + "#pushButton_1" + self.style_button[1])
+        self.pushButton_2.setStyleSheet("#pushButton_2" + self.style_button[0] + "#pushButton_2" + self.style_button[1])
+        if self.sender().text() == "Схема":
+            self.pushButton.setStyleSheet(self.style_button[2])
+            self.map_l = "map"
+        elif self.sender().text() == "Спутник":
+            self.pushButton_1.setStyleSheet(self.style_button[2])
+            self.map_l = "sat"
+        else:
+            self.pushButton_2.setStyleSheet(self.style_button[2])
+            self.map_l = "sat,skl"
+        self.setFocus()
+        self.refresh_map()
+
     def initUI(self):
-        self.image = QLabel(self)
-        self.image.move(0, 0)
-        self.image.resize(600, 450)
-        layout = QVBoxLayout()
-        layout.addWidget(self.image, alignment=Qt.AlignCenter)
+        self.pushButton.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.pushButton_1.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.pushButton_2.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.style_button = [''' {background-color: rgb(199, 199, 199);
+                                  font: 12pt "MS Shell Dlg 2";
+                                  border-radius: 10px;
+                                  border: 2px solid blue;
+                                  color: blue;}''', ''':hover {background-color: rgb(0, 255, 0);}''',
+                             '''background-color: rgb(0, 255, 0);
+                             font: 12pt "MS Shell Dlg 2";
+                             border-radius: 10px;
+                             border: 2px solid blue;
+                             color: blue;''']
+        self.pushButton.setStyleSheet(self.style_button[2])
+        self.pushButton.clicked.connect(self.change_map)
+        self.pushButton_1.clicked.connect(self.change_map)
+        self.pushButton_2.clicked.connect(self.change_map)
 
 
 if __name__ == '__main__':
