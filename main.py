@@ -6,6 +6,7 @@ from PyQt5.QtGui import QPixmap, QImage, QKeyEvent
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QMainWindow
 from PyQt5 import uic
 from PyQt5.Qt import *
+import geocoder
 
 SCREEN_SIZE = [600, 450]
 
@@ -65,10 +66,21 @@ class Map(QMainWindow):
         self.setFocus()
         self.refresh_map()
 
+    def find_place(self):
+        self.setFocus()
+        toponym_to_find = self.find_Edit.text()
+        if toponym_to_find:
+            self.map_ll = list(geocoder.get_coordinates(toponym_to_find))
+            # ll, spn = geocoder.get_ll_span(toponym_to_find)
+            self.map_zoom = 16
+            self.refresh_map()
+
     def initUI(self):
         self.pushButton.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_1.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_2.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.findButton.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.find_Edit.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.style_button = [''' {background-color: rgb(199, 199, 199);
                                   font: 12pt "MS Shell Dlg 2";
                                   border-radius: 10px;
@@ -83,6 +95,7 @@ class Map(QMainWindow):
         self.pushButton.clicked.connect(self.change_map)
         self.pushButton_1.clicked.connect(self.change_map)
         self.pushButton_2.clicked.connect(self.change_map)
+        self.findButton.clicked.connect(self.find_place)
 
 
 if __name__ == '__main__':
