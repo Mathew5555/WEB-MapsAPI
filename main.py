@@ -22,6 +22,7 @@ class Map(QMainWindow):
         self.map_ll = [37.9777751, 55.757718]
         self.map_l = "map"
         self.delta = 0.001
+        self.pt = 0
         self.refresh_map()
 
     def refresh_map(self):
@@ -31,6 +32,8 @@ class Map(QMainWindow):
             "z": self.map_zoom,
             "size": "600,450"
         }
+        if self.pt:
+            map_params["pt"] = self.pt
         response = requests.get("http://static-maps.yandex.ru/1.x/", params=map_params)
         self.image.setPixmap(QPixmap.fromImage(QImage.fromData(response.content)))
 
@@ -73,6 +76,7 @@ class Map(QMainWindow):
             self.map_ll = list(geocoder.get_coordinates(toponym_to_find))
             # ll, spn = geocoder.get_ll_span(toponym_to_find)
             self.map_zoom = 16
+            self.pt = f"{self.map_ll[0]},{self.map_ll[1]},pm2rdm"
             self.refresh_map()
 
     def initUI(self):
