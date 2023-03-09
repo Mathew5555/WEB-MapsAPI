@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>60</y>
+      <y>80</y>
       <width>121</width>
       <height>104</height>
      </rect>
@@ -103,6 +103,22 @@ color: blue;
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QCheckBox" name="post">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>40</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Почтовый индекс</string>
+    </property>
    </widget>
    <widget class="QWidget" name="">
     <property name="geometry">

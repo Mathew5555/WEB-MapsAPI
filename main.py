@@ -75,8 +75,7 @@ class Map(QMainWindow):
         if toponym_to_find:
             self.map_ll = list(geocoder.get_coordinates(toponym_to_find))
             # ll, spn = geocoder.get_ll_span(toponym_to_find)
-            adr = geocoder.geocode(f'{self.map_ll[0]},{self.map_ll[1]}')["metaDataProperty"]["GeocoderMetaData"]["text"]
-            self.label.setText(f"Адрес: {adr}")
+            self.post_check(1)
             self.map_zoom = 16
             self.pt = f"{self.map_ll[0]},{self.map_ll[1]},pm2rdm"
             self.refresh_map()
@@ -88,6 +87,16 @@ class Map(QMainWindow):
         self.pt = ""
         self.refresh_map()
 
+    def post_check(self, flag=0):
+        if self.post.isChecked() and (self.label.text() != "Адрес:" or flag):
+            adr = geocoder.geocode(f'{self.map_ll[0]},{self.map_ll[1]}')
+            self.label.setText(
+                f'Адрес: {adr["metaDataProperty"]["GeocoderMetaData"]["Address"]["postal_code"]},'
+                f' {adr["metaDataProperty"]["GeocoderMetaData"]["text"]}')
+        elif not self.post.isChecked() and (self.label.text() != "Адрес:" or flag):
+            adr = geocoder.geocode(f'{self.map_ll[0]},{self.map_ll[1]}')
+            self.label.setText(f'Адрес: {adr["metaDataProperty"]["GeocoderMetaData"]["text"]}')
+
     def initUI(self):
         self.pushButton.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.pushButton_1.setFocusPolicy(QtCore.Qt.ClickFocus)
@@ -95,6 +104,7 @@ class Map(QMainWindow):
         self.findButton.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.reset.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.find_Edit.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.post.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.style_button = [''' {background-color: rgb(199, 199, 199);
                                   font: 12pt "MS Shell Dlg 2";
                                   border-radius: 10px;
@@ -110,6 +120,7 @@ class Map(QMainWindow):
         self.pushButton_1.clicked.connect(self.change_map)
         self.pushButton_2.clicked.connect(self.change_map)
         self.findButton.clicked.connect(self.find_place)
+        self.post.clicked.connect(self.post_check)
         self.reset.clicked.connect(self.func_reset)
 
 
