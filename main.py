@@ -75,12 +75,15 @@ class Map(QMainWindow):
         if toponym_to_find:
             self.map_ll = list(geocoder.get_coordinates(toponym_to_find))
             # ll, spn = geocoder.get_ll_span(toponym_to_find)
+            adr = geocoder.geocode(f'{self.map_ll[0]},{self.map_ll[1]}')["metaDataProperty"]["GeocoderMetaData"]["text"]
+            self.label.setText(f"Адрес: {adr}")
             self.map_zoom = 16
             self.pt = f"{self.map_ll[0]},{self.map_ll[1]},pm2rdm"
             self.refresh_map()
 
     def func_reset(self):
         self.find_Edit.setText("")
+        self.label.setText(f"Адрес:")
         self.setFocus()
         self.pt = ""
         self.refresh_map()

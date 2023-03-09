@@ -6,90 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>753</width>
-    <height>498</height>
+    <width>831</width>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>611</width>
-      <height>493</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="findButton">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(199, 199, 199);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-border-radius: 10px;
-border: 2px solid blue;
-color: blue;</string>
-         </property>
-         <property name="text">
-          <string>Искать</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="find_Edit">
-         <property name="minimumSize">
-          <size>
-           <width>451</width>
-           <height>31</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-border-radius: 10px;
-border: 3px solid rgb(85, 85, 255);
-</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QLabel" name="image">
-       <property name="minimumSize">
-        <size>
-         <width>600</width>
-         <height>450</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>600</width>
-         <height>450</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>390</y>
+      <y>60</y>
       <width>121</width>
       <height>104</height>
      </rect>
@@ -175,23 +104,82 @@ color: blue;
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="reset">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>10</x>
       <y>0</y>
-      <width>119</width>
-      <height>30</height>
+      <width>616</width>
+      <height>516</height>
      </rect>
     </property>
-    <property name="minimumSize">
-     <size>
-      <width>100</width>
-      <height>30</height>
-     </size>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">#reset {
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="find_Edit">
+         <property name="minimumSize">
+          <size>
+           <width>380</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>380</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+border-radius: 10px;
+border: 3px solid rgb(85, 85, 255);
+</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="findButton">
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>110</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(199, 199, 199);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+border-radius: 10px;
+border: 2px solid blue;
+color: blue;</string>
+         </property>
+         <property name="text">
+          <string>Искать</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="reset">
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>110</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#reset {
 background-color: rgb(199, 199, 199);
 font: 12pt &quot;MS Shell Dlg 2&quot;;
 border-radius: 10px;
@@ -202,10 +190,50 @@ color: blue;
 #reset:hover {
 	background-color: rgb(0, 255, 0);
 }</string>
-    </property>
-    <property name="text">
-     <string>Сбросить</string>
-    </property>
+         </property>
+         <property name="text">
+          <string>Сбросить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="minimumSize">
+        <size>
+         <width>590</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Адрес:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="image">
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>450</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>450</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
